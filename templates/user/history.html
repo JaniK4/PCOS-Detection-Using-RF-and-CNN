@@ -1,0 +1,98 @@
+
+{% extends 'user/userNavigation.html' %}
+{% block content %}
+{% load static %}
+
+
+<body style="background-image: url({% static "" %});background-repeat: no-repeat;background-size: cover;">
+
+    <div class="container-fluid">
+        <div class="my-3">
+            <h3 style="color: white;">History</h3>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered text-center shadow bg-white" style="border-radius: 20px;">
+                <thead>
+                    <th>SL</th>
+                    <th>Height</th>
+                    <th>Weight</th>
+                    <th>BMI</th>
+                    <th>Hirsutism</th>
+                    <th>Skin</th>
+                    <th>Acene</th>
+                    <th>menstrual</th>
+                    <th>sleep</th>
+                    <th>hair</th>
+                    <th>Result 1</th>
+                    <th>Result 2</th>
+                </thead>
+                <tbody>
+                    {% for history in histories %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td class="text-nowrap text-center">
+                            {{ history.height }}</td>
+                        <td class="text-nowrap text-center">
+                            {{ history.weight }}</td>
+                        <td class="text-nowrap text-center">
+                            {{ history.bmi }}</td>
+                        {% if history.hirsutism == "1" %}
+                        <td><b class="text-success text-nowrap">Yes</b></td>
+                        {% else %}
+                        <td><b class="text-danger text-nowrap">No</b></td>
+                        {% endif %}
+                        {% if history.skin == "1" %}
+                        <td><b class="text-success text-nowrap">Yes</b></td>
+                        {% else %}
+                        <td><b class="text-danger text-nowrap">No</b></td>
+                        {% endif %}
+                        {% if history.acene == "1" %}
+                        <td><b class="text-success text-nowrap">Yes</b></td>
+                        {% else %}
+                        <td><b class="text-danger text-nowrap">No</b></td>
+                        {% endif %} 
+                        {% if history.menstrual == "1" %}
+                        <td><b class="text-success text-nowrap">Yes</b></td>
+                        {% else %}
+                        <td><b class="text-danger text-nowrap">No</b></td>
+                        {% endif %} 
+                        {% if history.sleep == "1" %}
+                        <td><b class="text-success text-nowrap">Yes</b></td>
+                        {% else %}
+                        <td><b class="text-danger text-nowrap">No</b></td>
+                        {% endif %} 
+                        {% if history.hair == "1" %}
+                        <td><b class="text-success text-nowrap">Yes</b></td>
+                        {% else %}
+                        <td><b class="text-danger text-nowrap">No</b></td>
+                        {% endif %}  
+                        {% if history.result1 == "1" %}
+                        <td><b class="text-success text-nowrap">Positive</b></td>
+                        {% else %}
+                        <td><b class="text-danger text-nowrap">Negative</b></td>
+                        {% endif %}
+                        {% if history.result2 == "null" %}
+                        <td><b class="text-success text-nowrap">-----</b></td>
+                        {% else %}
+                        {% if history.result2 == "Normal" %}
+                        <td><b class="text-black text-nowrap">{{history.result2}}</b></td>
+                          {% else %}
+                        <td><b class="text-danger text-nowrap">{{history.result2}}</b></td>
+
+                        {% endif %}
+                        {% endif %}
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="10">
+                            <h2 class="text-danger">No data found...!</h2>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+{% endblock %}
